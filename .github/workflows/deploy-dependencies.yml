@@ -89,6 +89,13 @@ jobs:
 
           kill $STERN_PID 2>/dev/null || true
           exit $STATUS
+      - name: Cleanup Helm Locks
+        if: failure() || cancelled()
+        run: |
+          kubectl -n "opencrvs-deps-${ENV}" get secrets -l owner=helm -o json | \
+          jq -r '.items[] | select(.metadata.labels.status=="pending-install" or .metadata.labels.status=="pending-upgrade" or .metadata.labels.status=="pending-rollback") | .metadata.name' | \
+          xargs -r kubectl -n "opencrvs-${ENV}" delete secret || \
+          echo "No helm locks found, all is good"
       - name: Send email
         if: always()
         run: |
