@@ -54,6 +54,12 @@ all:
         state: present
         role: admin
 
+      - name: moussa
+        ssh_keys:
+          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIxwW2QS1yezwCGkP+CfY+O9RNreCFmP+ujTAP1k1x4B gnamou@LAPTOP-IN740MUI
+        state: present
+        role: admin
+
   children:
     master:
       hosts:
