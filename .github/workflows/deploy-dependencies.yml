@@ -9,7 +9,7 @@ on:
         default: "dev"
         type: choice
         options:
-          - ""
+          - qa
 env:
   DEPENDENCIES_CHART_VERSION: "v1.9.14"
   TRAEFIK_CHART_VERSION: "39.0.0"
