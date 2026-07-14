@@ -57,7 +57,7 @@ jobs:
     name: Get backup encryption key
     uses: ./.github/workflows/get-secret-from-environment.yml
     with:
-      secret_name: 'BACKUP_ENCRYPTION_PASSPHRASE'
+      secret_name: "BACKUP_ENCRYPTION_PASSPHRASE"
       env_name: ${{ needs.get-restore-env-name.outputs.restore_env_name }}
     secrets:
       gh_token: ${{ secrets.GH_TOKEN }}
@@ -69,7 +69,7 @@ jobs:
     name: Get backup ssh key
     uses: ./.github/workflows/get-secret-from-environment.yml
     with:
-      secret_name: 'BACKUP_HOST_PRIVATE_KEY'
+      secret_name: "BACKUP_HOST_PRIVATE_KEY"
       env_name: ${{ needs.get-restore-env-name.outputs.restore_env_name }}
     secrets:
       gh_token: ${{ secrets.GH_TOKEN }}
@@ -83,7 +83,7 @@ jobs:
     name: Get postgres admin user
     uses: ./.github/workflows/get-secret-from-environment.yml
     with:
-      secret_name: 'POSTGRES_USER'
+      secret_name: "POSTGRES_USER"
       env_name: ${{ needs.get-restore-env-name.outputs.restore_env_name }}
     secrets:
       gh_token: ${{ secrets.GH_TOKEN }}
@@ -97,7 +97,7 @@ jobs:
     name: Get postgres admin password
     uses: ./.github/workflows/get-secret-from-environment.yml
     with:
-      secret_name: 'POSTGRES_PASSWORD'
+      secret_name: "POSTGRES_PASSWORD"
       env_name: ${{ needs.get-restore-env-name.outputs.restore_env_name }}
     secrets:
       gh_token: ${{ secrets.GH_TOKEN }}
@@ -119,7 +119,7 @@ jobs:
     name: Get backup ssh user
     uses: ./.github/workflows/get-secret-from-environment.yml
     with:
-      secret_name: 'BACKUP_SERVER_USER'
+      secret_name: "BACKUP_SERVER_USER"
       env_name: ${{ needs.get-restore-env-name.outputs.restore_env_name }}
     secrets:
       gh_token: ${{ secrets.GH_TOKEN }}
@@ -149,17 +149,17 @@ jobs:
       # with special characters and multiline values when generating Kubernetes Secret manifests
       - name: Export all secrets and environment variables from GitHub
         run: |
-            ENV_FILE=$(mktemp)
-            jq -n -r '
-                [${{ toJSON(secrets) }}, ${{ toJSON(vars) }}] 
-                | add
-                | with_entries(.value |= @base64)
-                | to_entries[] 
-                | "\(.key)=\(.value)"
-            ' > $ENV_FILE
+          ENV_FILE=$(mktemp)
+          jq -n -r '
+              [${{ toJSON(secrets) }}, ${{ toJSON(vars) }}] 
+              | add
+              | with_entries(.value |= @base64)
+              | to_entries[] 
+              | "\(.key)=\(.value)"
+          ' > $ENV_FILE
 
-            echo env_file=$ENV_FILE >> $GITHUB_ENV
-            cat $ENV_FILE | cut -d\= -f1
+          echo env_file=$ENV_FILE >> $GITHUB_ENV
+          cat $ENV_FILE | cut -d\= -f1
       - name: Save restore (backup source) environment secrets
         if: needs.get-restore-env-name.outputs.restore_env_name
         run: |
@@ -262,7 +262,7 @@ jobs:
         env:
           # TODO: Rename to DOCKERHUB_USERNAME after swarm migration
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME || '' }}
-          # TODO: Rename to DOCKERHUB_TOKEN after swarm migration 
+          # TODO: Rename to DOCKERHUB_TOKEN after swarm migration
           DOCKERHUB_TOKEN: ${{ secrets.DOCKER_TOKEN || '' }}
           DOCKERHUB_SECRET_NAME: ${{ vars.DOCKERHUB_SECRET_NAME || 'dockerhub-credentials' }}
           NAMESPACE_TEMPLATE: ${{ inputs.namespace_template }}
