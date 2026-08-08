@@ -17,6 +17,7 @@ all:
 
     # IMPORTANT: If master VM has multiple ethernet interfaces, put private IP address at kube_api_address
     # kube_api_host: 10.10.10.10
+    kube_api_address: 10.4.43.250
     kube_api_host: 10.4.43.250
 
     # Default ansible provision user, keep as is
