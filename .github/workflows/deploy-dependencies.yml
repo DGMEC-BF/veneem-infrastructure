@@ -9,6 +9,7 @@ on:
         default: "dev"
         type: choice
         options:
+          - production
           - qa
 env:
   DEPENDENCIES_CHART_VERSION: "v1.9.16"
