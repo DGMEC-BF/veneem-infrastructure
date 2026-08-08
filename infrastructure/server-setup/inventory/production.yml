@@ -50,7 +50,7 @@ all:
     users:
       - name: gnamou
         ssh_keys:
-          - AAAAC3NzaC1lZDI1NTE5AAAAIIxwW2QS1yezwCGkP+CfY+O9RNreCFmP+ujTAP1k1x4B gnamou@LAPTOP-IN740MUI
+          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIxwW2QS1yezwCGkP+CfY+O9RNreCFmP+ujTAP1k1x4B gnamou@LAPTOP-IN740MUI
         state: present
         role: admin
 
