@@ -13,7 +13,7 @@
     kubeconfig: /home/provision/.kube/config
     api_version: v1
     kind: Node
-    name: "{{ item.ansible_facts.nodename }}"
+    name: "{{ item.inventory_hostname }}"
     definition:
       metadata:
         labels: "{{ item.labels }}"
