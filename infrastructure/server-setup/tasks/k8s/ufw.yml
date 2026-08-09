@@ -38,6 +38,7 @@
     - { port: 4789, proto: "udp" }   # VXLAN (Calico; verify if needed)
     - { port: 179, proto: "tcp" }    # BGP (Calico)
     - { port: 179, proto: "udp" }    # BGP (Calico)
+    - { port: 5473, proto: "tcp" }   # Typha (Calico)
     # Expose traefik on node port
     # Rules are required for internet facing load balancer (if exists)
     - { port: 30080, proto: "tcp" }  # NodePort HTTP
