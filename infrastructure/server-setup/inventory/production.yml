@@ -59,7 +59,7 @@ all:
     master:
       hosts:
         # Replace master with value returned by command: hostname
-        master:
+        imm-faso-dgmec-veneem-prod-01:
           # Keep values (ansible_host, ansible_connection) as is
           # Ansible is executed on master node
           ansible_host: localhost
@@ -74,7 +74,7 @@ all:
     # more workers can be added later as well
     workers:
       hosts:
-        worker0:
+        imm-faso-dgmec-veneem-prod02:
           ansible_host: 10.4.43.251
           labels:
             # Labels have index + 2 for backward compatibility with existing swarm setup
@@ -83,5 +83,5 @@ all:
     # section can be added later
     backup:
       hosts:
-        backup0:
+        imm-faso-dgmec-backup:
           ansible_host: 10.4.43.248
